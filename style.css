@@ -107,6 +107,13 @@ span {
     border-radius: 10px;
 }
 
+#video2 {
+    height: 400px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+}
+
 #videoTitle,
 #videoDescription {
     text-align: center;

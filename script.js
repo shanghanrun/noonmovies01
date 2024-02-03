@@ -256,7 +256,8 @@ fetch(jsonFilePath)
     })
     .then(videos => {
         // 첫 번째 비디오 정보 가져오기
-        const firstVideo = videos[0];
+        let index = Math.floor(Math.random()*4)
+        const firstVideo = videos[index];
         // 비디오 소스 설정
         videoPlayer.src = firstVideo.videoUrl;
         videoTitle.innerText = firstVideo.title;
@@ -267,6 +268,11 @@ fetch(jsonFilePath)
     .catch(error => {
         console.error('There was a problem with your fetch operation:', error);
     });
+
+
+const video2 =document.querySelector('#video2')
+video2.play();
+
 
 
 // 영화포스터
