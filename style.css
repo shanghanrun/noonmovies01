@@ -1,0 +1,145 @@
+.head-line {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.head-line img {
+    height: 200px;
+    width: 430px;
+}
+
+.menus {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-top: 1px solid rgb(203, 202, 202);
+    border-bottom: 4px double black;
+}
+
+button {
+    border: none;
+    background: none;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: pink;
+}
+
+.on {
+    background-color: pink;
+    transition: 0.4s;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+
+    padding-top: 10px;
+}
+
+/* 입력 필드의 스타일 */
+.search-input {
+    padding-left: 25px;
+    /* 아이콘의 너비만큼 입력 필드를 내부적으로 이동 */
+}
+
+#search-button {
+    background-color: rgb(126, 154, 253);
+}
+
+i {
+    vertical-align: middle;
+    padding-bottom: 4px;
+    color: gray;
+}
+
+img {
+    max-width: 100%;
+    max-height: 600px;
+}
+
+.item {
+    padding: 10px;
+    border-bottom: 3px solid gray;
+}
+
+.active {
+    background-color: blue;
+}
+
+.disabled {
+    opacity: 0.2;
+}
+
+.item h2 {
+    color: rgb(49, 95, 244);
+    /* text-decoration: none; */
+    /* a 태그일 경우 기본 밑줄 제거 */
+    border-bottom: 1px solid rgba(0, 0, 255, 0.2);
+}
+
+.country {
+    background-color: rgb(77, 252, 152);
+    font-size: 20px;
+    padding: 3px;
+}
+
+.country:hover {
+    cursor: pointer;
+}
+
+span {
+    margin-left: 20px;
+}
+
+
+
+#videoPlayer {
+    /* max-width: 600px; */
+    width: 800px;
+    margin: 0 auto;
+    /* 이렇게 하면 중앙정렬이 된다. 다만 */
+    display: block;
+    /* 상위태그 영향으로 중앙정렬이 안되면 display: block;을 해주면 된다. */
+    border-radius: 10px;
+}
+
+#videoTitle,
+#videoDescription {
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+#images {
+    display: flex;
+    flex-wrap: wrap;
+    /* 이미지가 한 줄에 맞지 않을 경우 자동으로 다음 줄로 넘어갑니다. */
+    justify-content: center;
+    /* 이미지를 수평 가운데로 정렬합니다. */
+    gap: 20px;
+    /* 이미지 사이의 간격을 조정합니다. */
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#images img {
+    max-width: 100%;
+    /* 이미지가 부모 요소에 맞게 최대 너비로 표시됩니다. */
+    /* height: auto; */
+    /* 이미지의 높이를 자동으로 조정하여 비율을 유지합니다. */
+
+    height: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+#images img:hover {
+    transform: scale(1.2) translateY(-8px);
+}
