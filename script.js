@@ -103,7 +103,7 @@ const getNews = async()=>{
              if (country == 'kr'){
                  firstItem = {
                      title: '여신의 품격: Ive 장원영 vs 코딩누나',
-                     content: "<h5>코딩 알려주는 누나와 쌍벽을 이루는 미모</br>코딩누나 긴장 좀 해야 겠다!! </h5>",
+                     description: "<h5>코딩 알려주는 누나와 쌍벽을 이루는 미모</br>코딩누나 긴장 좀 해야 겠다!! </h5>",
                      url: 'https://cdn.inflearn.com/public/users/thumbnails/694277/60d324e4-719f-4551-8f3c-f377b7eb1f78',
                      urlToImage: `https://truth.bahamut.com.tw/s01/202209/bb7dd87e8f4d1d0ca3a7d735f873eb38.JPG`,
                      publishedAt: '2024.01.30',
@@ -112,7 +112,7 @@ const getNews = async()=>{
              } else{
                 firstItem = {
                      title: 'Grace of goddess: Ive Jang wongyong vs Coding noona.',
-                     content: "<h5>A perfect pair in beauty along with Coding noona</br>Coding noona! You should not let your guard down!!</h5>",
+                     description: "<h5>A perfect pair in beauty along with Coding noona</br>Coding noona! You should not let your guard down!!</h5>",
                      url: 'https://cdn.inflearn.com/public/users/thumbnails/694277/60d324e4-719f-4551-8f3c-f377b7eb1f78',
                      urlToImage: `https://truth.bahamut.com.tw/s01/202209/bb7dd87e8f4d1d0ca3a7d735f873eb38.JPG`,
                      publishedAt: '2024.01.30',
@@ -145,8 +145,8 @@ const render=()=>{
                         <img src=${news.urlToImage?? replaceImage}  />
                     </div>
                     <div class="col-lg-8">
-                        <h2><div onclick="getDetail(${news.url})">${news.title}</div></h2>
-                        <p>${news.content}</p>
+                        <h2><div onclick="getDetail('${news.url}')">${news.title}</div></h2>
+                        <p>${news.description}</p>
                         <div>
                             ${news.source.name} : ${news.publishedAt} 
                         </div>
@@ -271,7 +271,7 @@ fetch(jsonFilePath)
 
 
 const video2 =document.querySelector('#video2')
-video2.play();
+// video2.play();
 
 
 
@@ -296,8 +296,60 @@ imageUrls.forEach(url => {
 
 
 
-// getNews();
+// getNews();   뉴스를 받으러면 활성화시킨다.
+
+const moviesSection = document.querySelector('#movies')
+
+let movieList;
+const getMovies= async()=>{
+    const response = await fetch(`https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`);
+    const json = await response.json(); //그런데 되도록 json이라는 변수이름은 안쓰는게 좋다.  차라리 data로 사용하라. json은 일종의 예약어로 작용할 때가 있다..
+    // setMovies(json.data.movies);  리액트 코드
+    movieList = json.data.movies;
+    console.log(movieList)
+    renderMovies();
+}
+//! 이 방식으로 함수를 선언하면, 일단 함수가 실행된다.!!
 
 
+getMovies();
 
+const renderMovies =()=>{
+    const moviesDiv = document.createElement('div')
+    movieList.forEach(movie =>{
+        const movieDiv =document.createElement('div')
+        const h2 = document.createElement('h2')
+        h2.textContent = movie.title;
+        const img =document.createElement('img')
+        img.src = movie.medium_cover_image;
+        const p = document.createElement('p')
+        p.textContent = movie.summary;
+        const ul = document.createElement('ul')
+        movie.genres.forEach(genre=>{
+            const li = document.createElement('li')
+            li.textContent = genre;
+            ul.appendChild(li)
+        })
+        movieDiv.appendChild(h2);
+        movieDiv.appendChild(img)
+        movieDiv.appendChild(p)
+        movieDiv.appendChild(ul)
+        moviesDiv.appendChild(movieDiv);
+    })
+    moviesSection.appendChild(moviesDiv);
+}
 
+// const divList = movieList.map(movie =>{
+//     return (
+//     <div key={movie.id}>
+//         <h2>{movie.title}</h2>
+//         <img src={movie.medium_cover_image} />
+//         <p>{movie.summary}</p>
+//         <ul>
+//             {movie.genre?.map((el, idx)=>{
+//                 return <li key={idx}>{el}</li>
+//             })}
+//         </ul>
+//     </div>).toString()
+// }) 
+// moviesDiv.innerHTML = divList;
